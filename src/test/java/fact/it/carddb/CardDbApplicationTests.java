@@ -8,6 +8,7 @@ class CardDbApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
