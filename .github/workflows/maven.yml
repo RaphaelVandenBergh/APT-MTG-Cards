@@ -38,7 +38,7 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
 
       - name: Docker Build
-        run: docker build -t ${{ secrets.DOCKER_USER }}/MTG-CARDS:latest .
+        run: docker build -t ${{ secrets.DOCKER_USER }}/mtg-cards:latest .
 
       - name: Upload container to Docker Hub with Push
         run: docker push ${{ secrets.DOCKER_USER }}/mtg-cards:latest
