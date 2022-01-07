@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: ankane/setup-mariadb@V1
+    - uses: ankane/setup-mariadb@v1
       with: 
         database: Cards
     - uses: actions/checkout@v2
