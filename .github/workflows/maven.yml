@@ -24,7 +24,7 @@ jobs:
           cache: maven
       - uses: getong/mariadb-action@v1.1
         with:
-          host port: 3306 # Optional, default value is 3306. The port of host
+          host port: 3307 # Optional, default value is 3306. The port of host
           container port: 3307
           mysql database: 'Cards' # Optional, default value is "test". The specified database which will be create
           mysql root password: 'password' # Required if "mysql user" is empty, default is empty. The root superuser password
@@ -33,3 +33,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RaphaelVandenBergh_APT-MTG-Cards
+
+      - name: Docker login
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+
+      - name: Docker Build
+        run: docker build -t ${{ secrets.DOCKER_USER }}/mtg-cards:latest .
+
+      - name: Upload container to Docker Hub with Push
+        run: docker push ${{ secrets.DOCKER_USER }}/mtg-cards:latest
