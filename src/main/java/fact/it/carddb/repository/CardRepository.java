@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface CardRepository extends JpaRepository<Card, Integer> {
-    List<Card> findCardsByNameContaining(String Name);
     List<Card> findCardsByCost(int cost);
     List<Card> findCardsByTypeContaining(String Type);
     Card findCardByNameContaining(String Name);
