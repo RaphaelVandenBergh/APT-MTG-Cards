@@ -28,5 +28,8 @@ jobs:
           container port: 3307
           mysql database: 'Cards' # Optional, default value is "test". The specified database which will be create
           mysql root password: 'password' # Required if "mysql user" is empty, default is empty. The root superuser password
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RaphaelVandenBergh_APT-MTG-Cards
