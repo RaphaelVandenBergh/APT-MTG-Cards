@@ -20,13 +20,14 @@ public class CardController {
     }
 
     @GetMapping("/cards/{Name}")
-    public List<Card> findCardsByNameContaining(@PathVariable String Name){
-        return cardRepository.findCardsByNameContaining(Name);
+    public Card findCardByNameContaining(@PathVariable String Name){
+        return cardRepository.findCardByNameContaining(Name);
     }
     @GetMapping("/cards/cost/{Cost}")
-    public List<Card> findCardsByNameContaining(@PathVariable int Cost){
+    public List<Card> findCardsByCost(@PathVariable int Cost){
         return cardRepository.findCardsByCost(Cost);
     }
+
     @GetMapping("/cards/type/{Type}")
     public List<Card> findCardsByTypeContaining(@PathVariable String Type){
         return cardRepository.findCardsByTypeContaining(Type);
